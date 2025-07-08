@@ -59,7 +59,7 @@ export async function DELETE(req: NextRequest, {params}: {params : Params}) {
 
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-           const { params } = context;
+
   const { id } = params;
 try {
       
