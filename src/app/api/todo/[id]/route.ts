@@ -10,9 +10,8 @@ interface param {
     email : string
 }
 
-export async function PUT(req: NextRequest, {params}: {params : Params}) {
-    
- const id = await params.id;
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
   const { isDone } = await req.json();
  
    try {
@@ -41,10 +40,8 @@ export async function PUT(req: NextRequest, {params}: {params : Params}) {
 }
 
 
-export async function DELETE(req: NextRequest, {params}: {params : Params}) {
-         
-    const {id} = await params;
-
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
    const deletedTodo = await prisma.todo.delete({
     where: {
         id
