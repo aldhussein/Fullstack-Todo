@@ -16,7 +16,7 @@ import UpdateAccount from '../_components/Account/UpdateAccount';
 
 
 
-
+export const dynamic = 'force-dynamic';
 const AccountPage = async () => {
  const session = await auth();
  const user : any = session?.user;
