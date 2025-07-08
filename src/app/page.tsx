@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import Todos from "./_components/todo/Todos";
 import TodoForm from "./_components/todo/TodoForm";
 
+
+export const dynamic = 'force-dynamic';
+
 const Page = async () => {
   const session = await auth();
   if (!session) redirect("/sign-in");
