@@ -37,7 +37,7 @@ catch (error) {
 }
 
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: RouteContext<{ id: string }>) {
   const { id } = context.params;
   const { isDone } = await req.json();
  
@@ -67,7 +67,7 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
 }
 
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: RouteContext<{ id: string }>) {
   const { id } = context.params;
    const deletedTodo = await prisma.todo.delete({
     where: {
