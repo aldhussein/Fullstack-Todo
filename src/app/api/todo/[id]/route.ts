@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma  from "@/prisma/db"
 import { auth } from "@/lib/auth";
-import type { RouteContext } from 'next';
+import RouteContext from "next";
 
 interface Params {
     id : string
