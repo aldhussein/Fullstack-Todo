@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma  from "@/prisma/db"
 import { auth } from "@/lib/auth";
+import type { RouteContext } from 'next';
 
 interface Params {
     id : string
@@ -55,7 +56,7 @@ export async function DELETE(req: NextRequest, context: { params: { id: string }
 }
 
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest,  context: RouteContext<{ id: string }>) {
   const { id } = context.params;
 try {
       
