@@ -11,6 +11,32 @@ interface param {
     email : string
 }
 
+
+
+export async function GET(req: NextRequest,  context: RouteContext<{ id: string }>) {
+  const { id } = context.params;
+try {
+      
+ const todos = await prisma.user.findUnique({
+    where: {id},
+    include: {
+        Todos: true
+    }
+ })
+
+   
+
+    return NextResponse.json(todos, {status: 201})
+    
+} 
+catch (error) {
+    console.log("the error is  ",error)
+}
+
+
+}
+
+
 export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   const { id } = context.params;
   const { isDone } = await req.json();
@@ -56,27 +82,5 @@ export async function DELETE(req: NextRequest, context: { params: { id: string }
 }
 
 
-export async function GET(req: NextRequest,  context: RouteContext<{ id: string }>) {
-  const { id } = context.params;
-try {
-      
- const todos = await prisma.user.findUnique({
-    where: {id},
-    include: {
-        Todos: true
-    }
- })
-
-   
-
-    return NextResponse.json(todos, {status: 201})
-    
-} 
-catch (error) {
-    console.log("the error is  ",error)
-}
-
-return NextResponse.json(`it is working the server now ${id}` )
-}
 
 
