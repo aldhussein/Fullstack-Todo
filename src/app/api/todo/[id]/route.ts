@@ -13,28 +13,7 @@ interface param {
 
 
 
-export async function GET(req: NextRequest,   { params }: { params: { id: string } }) {
-    const { id } = params;
-try {
-      
- const todos = await prisma.user.findUnique({
-    where: {id},
-    include: {
-        Todos: true
-    }
- })
 
-   
-
-    return NextResponse.json(todos, {status: 201})
-    
-} 
-catch (error) {
-    console.log("the error is  ",error)
-}
-
-
-}
 
 
 export async function PUT(req: NextRequest,  { params }: { params: { id: string } }) {
@@ -63,6 +42,30 @@ export async function PUT(req: NextRequest,  { params }: { params: { id: string 
     console.log("the error is",error)
      return NextResponse.json({ error: "Update failed" }, { status: 400 });
    }
+
+}
+
+
+export async function GET(req: NextRequest,   { params }: { params: { id: string } }) {
+    const { id } = params;
+try {
+      
+ const todos = await prisma.user.findUnique({
+    where: {id},
+    include: {
+        Todos: true
+    }
+ })
+
+   
+
+    return NextResponse.json(todos, {status: 201})
+    
+} 
+catch (error) {
+    console.log("the error is  ",error)
+}
+
 
 }
 
