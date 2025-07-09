@@ -13,8 +13,8 @@ interface param {
 
 
 
-export async function GET(req: NextRequest,  context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function GET(req: NextRequest,   { params }: { params: { id: string } }) {
+    const { id } = params;
 try {
       
  const todos = await prisma.user.findUnique({
@@ -37,8 +37,8 @@ catch (error) {
 }
 
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function PUT(req: NextRequest,  { params }: { params: { id: string } }) {
+    const { id } = params;
   const { isDone } = await req.json();
  
    try {
@@ -67,8 +67,8 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
 }
 
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
-   const { id } = context.params;
+export async function DELETE(req: NextRequest,  { params }: { params: { id: string } }) {
+    const { id } = params;
    const deletedTodo = await prisma.todo.delete({
     where: {
         id
